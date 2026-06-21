@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder | BioCraft Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">BioCraft Pro</a>
+                <div class="nav-links">
+                    <button class="btn btn-primary" onclick="exportPDF()">Download PDF</button>
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="builder-container">
+        <aside class="editor-sidebar">
+            <div class="editor-section">
+                <h3>Personal Information</h3>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="John Doe" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>Job Title</label>
+                    <input type="text" class="form-control" id="jobTitle" placeholder="Software Engineer" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="john@example.com" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="text" class="form-control" id="phone" placeholder="+1 234 567 890" oninput="updatePreview()">
+                </div>
+            </div>
+
+            <div class="editor-section">
+                <h3>Summary</h3>
+                <div class="form-group">
+                    <textarea class="form-control" id="summary" rows="4" placeholder="Brief professional summary..." oninput="updatePreview()"></textarea>
+                    <button class="btn" style="font-size: 0.8rem; margin-top: 0.5rem;" onclick="generateAISummary()">✨ AI Generate</button>
+                </div>
+            </div>
+
+            <div class="editor-section">
+                <h3>Experience</h3>
+                <div id="experienceList"></div>
+                <button class="btn" onclick="addExperience()">+ Add Experience</button>
+            </div>
+
+            <div class="editor-section">
+                <h3>Education</h3>
+                <div id="educationList"></div>
+                <button class="btn" onclick="addEducation()">+ Add Education</button>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="resume-paper" id="resumePreview">
+                <div id="previewHeader">
+                    <h1 id="prevName">John Doe</h1>
+                    <p id="prevTitle">Software Engineer</p>
+                    <div id="prevContact">
+                        <span id="prevEmail">john@example.com</span> | 
+                        <span id="prevPhone">+1 234 567 890</span>
+                    </div>
+                </div>
+                <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #eee;">
+                <div id="prevSummary">
+                    <h3>Professional Summary</h3>
+                    <p id="prevSummaryText">Professional summary will appear here...</p>
+                </div>
+                <div id="prevExperience">
+                    <h3>Experience</h3>
+                    <div id="prevExpList"></div>
+                </div>
+                <div id="prevEducation">
+                    <h3>Education</h3>
+                    <div id="prevEduList"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/templates.js"></script>
+    <script src="js/pdf-export.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

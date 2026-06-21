@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card Generator | BioCraft Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .id-card {
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+        }
+        .id-card-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            height: 120px;
+        }
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            background: #ddd;
+            border: 5px solid white;
+            border-radius: 50%;
+            margin: -60px auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .qr-code {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">BioCraft Pro</a>
+                <div class="nav-links">
+                    <button class="btn btn-primary" onclick="exportPDF()">Download ID Card</button>
+                    <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="builder-container">
+        <aside class="editor-sidebar">
+            <div class="editor-section">
+                <h3>Card Details</h3>
+                <div class="form-group">
+                    <label>Organization Name</label>
+                    <input type="text" class="form-control" id="orgName" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>Holder Name</label>
+                    <input type="text" class="form-control" id="fullName" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>Designation / Roll No</label>
+                    <input type="text" class="form-control" id="jobTitle" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>ID Number</label>
+                    <input type="text" class="form-control" id="idNumber" oninput="updatePreview()">
+                </div>
+            </div>
+        </aside>
+
+        <main class="preview-area">
+            <div class="id-card" id="resumePreview">
+                <div class="id-card-header">
+                    <h2 id="prevOrg">COMPANY NAME</h2>
+                </div>
+                <div class="photo-placeholder">
+                    <i class="fas fa-user" style="font-size: 3rem; color: #aaa;"></i>
+                </div>
+                <div style="padding: 10px;">
+                    <h3 id="prevName">JOHN DOE</h3>
+                    <p id="prevTitle" style="color: var(--primary); font-weight: bold;">Employee</p>
+                    <p style="margin-top: 10px;">ID: <span id="prevId">#12345</span></p>
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=BioCraftPro" alt="QR">
+                    </div>
+                </div>
+                <div style="background: var(--primary); height: 10px; position: absolute; bottom: 0; width: 100%;"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/pdf-export.js"></script>
+</body>
+</html>
